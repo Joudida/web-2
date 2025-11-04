@@ -1,10 +1,12 @@
-import react from 'react';
-const Contact= () => {
-    return (
-        <div>
-            <h1> Home Page</h1>
-            <p> Welcome to our project !</p>
-        </div>
-    );
-};
+function Contact() {
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>Contact Us</h1>
+      <p>Email: support@healthtrack.com</p>
+      <p>Instagram: @healthtrack_app</p>
+    </div>
+  );
+}
+
 export default Contact;
+
