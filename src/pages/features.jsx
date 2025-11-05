@@ -1,44 +1,53 @@
 import React from "react";
 import "./features.css";
 
-const Features = () => {
+function Features() {
+  const features = [
+    {
+      title: "Personal Training",
+      description:
+        "Get customized workout programs designed for your goals and fitness level.",
+      img: "https://images.pexels.com/photos/414029/pexels-photo-414029.jpeg?auto=compress&cs=tinysrgb&w=800",
+    },
+    {
+      title: "Nutrition Guidance",
+      description:
+        "Track your meals and learn how to balance proteins, carbs, and fats the right way.",
+      img: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800",
+    },
+    {
+      title: "Zumba & Dance Classes",
+      description:
+        "Join energetic dance sessions to stay fit while having fun!",
+      img: "https://images.pexels.com/photos/3757376/pexels-photo-3757376.jpeg?auto=compress&cs=tinysrgb&w=800",
+    },
+    {
+      title: "CrossFit & Strength",
+      description:
+        "Push your limits with strength-based training sessions and dynamic workouts.",
+      img: "https://images.pexels.com/photos/2261485/pexels-photo-2261485.jpeg?auto=compress&cs=tinysrgb&w=800",
+    },
+  ];
+
   return (
     <div className="features-container">
-      <h2 className="features-title">Our Key Features</h2>
-      <p className="features-intro">
-        Discover tools that help you stay on top of your fitness journey.
+      <h1>Our Features</h1>
+      <p className="intro-text">
+        Explore everything HealthTrack has to offer — from personalized training
+        plans to group classes and nutrition tracking.
       </p>
 
       <div className="features-grid">
-        <div className="feature-card">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/814/814513.png"
-            alt="Activity Tracking"
-          />
-          <h3>Activity Tracking</h3>
-          <p>Track your workouts, steps, and overall daily performance.</p>
-        </div>
-
-        <div className="feature-card">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/706/706164.png"
-            alt="Healthy Meals"
-          />
-          <h3>Healthy Meals</h3>
-          <p>Monitor your meals and get personalized nutrition recommendations.</p>
-        </div>
-
-        <div className="feature-card">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/2784/2784459.png"
-            alt="Hydration Reminder"
-          />
-          <h3>Hydration Reminder</h3>
-          <p>Stay hydrated! Get smart reminders to drink water regularly.</p>
-        </div>
+        {features.map((feature, index) => (
+          <div className="feature-card" key={index}>
+            <img src={feature.img} alt={feature.title} />
+            <h3>{feature.title}</h3>
+            <p>{feature.description}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
-};
+}
 
 export default Features;
