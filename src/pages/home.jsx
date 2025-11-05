@@ -2,26 +2,45 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
 
-const Home = () => {
+function Home() {
   return (
-    <div className="home-container">
-      <div className="home-text">
-        <h1>Welcome to <span>HealthTrack</span></h1>
-        <p>
-          Your personal fitness & wellness tracker.  
-          Log your meals, workouts, and stay motivated!
-        </p>
-        <div className="home-buttons">
-          <Link to="/features" className="home-btn">Explore features</Link>
-          <Link to="/contact" className="home-btn outline">Contact us</Link>
+    <div className="home">
+      {/* Hero Section */}
+      <section className="hero">
+        <div className="hero-content">
+          <h1>Welcome to HealthTrack 🏋️‍♀️</h1>
+          <p>Your personal fitness and health companion.</p>
+          <Link to="/features" className="btn">
+            Explore Features
+          </Link>
         </div>
-      </div>
+      </section>
 
-      <div className="home-image">
-        <img src="https://cdn-icons-png.flaticon.com/512/2964/2964514.png" alt="fitness" />
-      </div>
+      {/* Highlights Section */}
+      <section className="highlights">
+        <div className="highlight">
+          <h3>💪 Track Workouts</h3>
+          <p>Log your daily exercises and monitor progress easily.</p>
+        </div>
+        <div className="highlight">
+          <h3>🥗 Nutrition Tips</h3>
+          <p>Get personalized meal recommendations for your goals.</p>
+        </div>
+        <div className="highlight">
+          <h3>🧠 Mind & Body</h3>
+          <p>Balance your physical and mental wellness daily.</p>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="cta">
+        <h2>Ready to start your journey?</h2>
+        <Link to="/contact" className="btn">
+          Contact Us
+        </Link>
+      </section>
     </div>
   );
-};
+}
 
 export default Home;
