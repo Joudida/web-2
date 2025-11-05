@@ -1,86 +1,46 @@
-import React, { useState } from "react";
-import "../pages/DynamicPage.css"; 
+import React from "react";
+import "./DynamicPage.css";
+import { useParams } from "react-router-dom";
+
 const DynamicPage = () => {
-  
-  const [workouts, setWorkouts] = useState([]);
-  const [newWorkout, setNewWorkout] = useState("");
-  const [meals, setMeals] = useState([]);
-  const [newMeal, setNewMeal] = useState("");
-  const [progress, setProgress] = useState({ weight: "", calories: "" });
+  const { id } = useParams();
 
-  
-  const addWorkout = () => {
-    if (newWorkout.trim() !== "") {
-      setWorkouts([...workouts, newWorkout]);
-      setNewWorkout("");
-    }
-  };
+  // بيانات تجريبية (مثلاً تفاصيل الأنشطة)
+  const activities = [
+    {
+      id: 1,
+      title: "Personal Training",
+      image: "/images/personal-training.jpg",
+      description:
+        "Achieve your fitness goals with personalized training sessions designed just for you.",
+    },
+    {
+      id: 2,
+      title: "CrossFit",
+      image: "/images/crossfit.jpg",
+      description:
+        "Join our high-intensity CrossFit classes and push your limits every day!",
+    },
+    {
+      id: 3,
+      title: "Zumba",
+      image: "/images/zumba.jpg",
+      description:
+        "Have fun while burning calories with energetic Zumba dance workouts.",
+    },
+  ];
 
-  
-  const addMeal = () => {
-    if (newMeal.trim() !== "") {
-      setMeals([...meals, newMeal]);
-      setNewMeal("");
-    }
-  };
+  const activity = activities.find((item) => item.id === Number(id));
+
+  if (!activity) {
+    return <h2 className="not-found">Activity not found</h2>;
+  }
 
   return (
     <div className="dynamic-container">
-      <h2>HealthTrack Dashboard</h2>
-
-      <div className="section">
-        <h3>🏋️ Workout Logger</h3>
-        <input
-          type="text"
-          placeholder="Enter workout name..."
-          value={newWorkout}
-          onChange={(e) => setNewWorkout(e.target.value)}
-        />
-        <button onClick={addWorkout}>Add Workout</button>
-        <ul>
-          {workouts.map((workout, index) => (
-            <li key={index}>{workout}</li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Meal Tracker */}
-      <div className="section">
-        <h3>🍎 Meal Tracker</h3>
-        <input
-          type="text"
-          placeholder="Enter meal name..."
-          value={newMeal}
-          onChange={(e) => setNewMeal(e.target.value)}
-        />
-        <button onClick={addMeal}>Add Meal</button>
-        <ul>
-          {meals.map((meal, index) => (
-            <li key={index}>{meal}</li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Progress Dashboard */}
-      <div className="section">
-        <h3>📊 Progress Dashboard</h3>
-        <input
-          type="text"
-          placeholder="Current Weight (kg)"
-          value={progress.weight}
-          onChange={(e) => setProgress({ ...progress, weight: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Calories Today"
-          value={progress.calories}
-          onChange={(e) => setProgress({ ...progress, calories: e.target.value })}
-        />
-        <div className="progress-box">
-          <p>🏋️ Weight: {progress.weight || "—"} kg</p>
-          <p>🔥 Calories: {progress.calories || "—"} kcal</p>
-        </div>
-      </div>
+      <h1>{activity.title}</h1>
+      <img src={activity.image} alt={activity.title} className="dynamic-image" />
+      <p>{activity.description}</p>
     </div>
   );
 };
