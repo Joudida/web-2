@@ -1,7 +1,8 @@
+
 import React, { useState } from "react";
 import "./Contact.css";
 
-const Contact = () => {
+function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -9,19 +10,20 @@ const Contact = () => {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Thank you, " + formData.name + "! Your message has been sent successfully.");
+    alert("Your message has been sent successfully!");
     setFormData({ name: "", email: "", message: "" });
   };
 
   return (
     <div className="contact-container">
-      <h2>Contact Us</h2>
-      <p>We’d love to hear from you! Fill out the form below.</p>
+      <h1>Contact Us</h1>
+      <p>We’d love to hear from you! Fill out the form below 👇</p>
 
       <form onSubmit={handleSubmit} className="contact-form">
         <input
@@ -32,6 +34,7 @@ const Contact = () => {
           onChange={handleChange}
           required
         />
+
         <input
           type="email"
           name="email"
@@ -40,6 +43,7 @@ const Contact = () => {
           onChange={handleChange}
           required
         />
+
         <textarea
           name="message"
           placeholder="Your Message"
@@ -48,11 +52,11 @@ const Contact = () => {
           onChange={handleChange}
           required
         ></textarea>
+
         <button type="submit">Send Message</button>
       </form>
     </div>
   );
-};
+}
 
 export default Contact;
-
