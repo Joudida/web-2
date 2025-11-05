@@ -3,7 +3,8 @@ import Home from "./pages/home";
 import About from "./pages/about";
 import Features from "./pages/features";
 import Contact from "./pages/contact";
-import ActivityDetails from "./pages/ActivityDetails";
+import DynamicPage from "./pages/DynamicPage";
+
 
 function App() {
 
@@ -13,8 +14,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/features" element={<Features />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/activity/:id" element={<ActivityDetails />} />
+       <Route path="/dynamic" element={<DynamicPage />} />
+    <Route path="/contact" element={<Contact />} />
+       
 
       </Routes>
     </Router>

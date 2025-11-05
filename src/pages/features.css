@@ -1,58 +1,55 @@
 .features-container {
-  background: linear-gradient(135deg, #f5fff7 0%, #d7ffd9 100%);
-  min-height: 100vh;
-  padding: 60px 20px;
   text-align: center;
+  padding: 50px 20px;
+  background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+  min-height: 100vh;
 }
 
-.features-container h2 {
-  font-size: 2.5rem;
-  color: #222;
+.features-title {
+  font-size: 2.2rem;
+  color: #00796b;
+  margin-bottom: 10px;
 }
 
-.features-container p {
+.features-intro {
   color: #555;
   font-size: 1.1rem;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 25px;
-  justify-items: center;
 }
 
 .feature-card {
   background: white;
-  padding: 25px;
   border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: 0.3s;
-  max-width: 280px;
-}
-
-.feature-card img {
-  width: 80px;
-  margin-bottom: 15px;
-  transition: transform 0.3s;
-}
-
-.feature-card h3 {
-  color: #2e7d32;
-  margin-bottom: 10px;
-}
-
-.feature-card p {
-  color: #555;
-  font-size: 0.95rem;
+  width: 280px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.2);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
 
-.feature-card:hover img {
-  transform: scale(1.1);
+.feature-card img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 15px;
+}
+
+.feature-card h3 {
+  color: #00796b;
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  color: #444;
+  font-size: 0.95rem;
 }
