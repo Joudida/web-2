@@ -1,37 +1,36 @@
 import React from "react";
 import "./About.css";
 
-function About() {
+const About = () => {
   return (
     <div className="about-container">
-      <section className="about-hero">
-        <h1>About HealthTrack</h1>
-        <p>
-          HealthTrack is your personal wellness companion — helping you track
-          your daily workouts, nutrition, and lifestyle habits to achieve a
-          healthier you.
-        </p>
-      </section>
+      <h1>About HealthTrack</h1>
+      <p>
+        Welcome to <strong>HealthTrack</strong> — your personal fitness and wellness companion.
+        Our mission is to help you stay on top of your health goals by tracking your workouts,
+        meals, and daily activities, all in one place.
+      </p>
 
-      <section className="about-mission">
-        <h2>Our Mission</h2>
-        <p>
-          We aim to make fitness simple and accessible for everyone. Whether
-          you're a beginner or an athlete, HealthTrack helps you stay
-          consistent, motivated, and balanced.
-        </p>
-      </section>
+      <p>
+        Whether you're aiming to lose weight, build muscle, or just live a healthier lifestyle,
+        HealthTrack provides the tools, motivation, and insights you need to succeed.
+      </p>
 
-      <section className="about-vision">
-        <h2>Why Choose Us?</h2>
-        <ul>
-          <li>Easy-to-use and intuitive interface</li>
-          <li>Track workouts and meals effortlessly</li>
-          <li>Stay motivated with daily goals and insights</li>
-        </ul>
-      </section>
+      <div className="about-team">
+        <h2>Meet the Creator</h2>
+        <img
+          src="https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg"
+          alt="Trainer"
+          className="about-img"
+        />
+        <p>
+          Hi, I’m <strong>Joudi Dandachi</strong>, a certified fitness trainer and IT student passionate about
+          combining technology with wellness. This project is built to inspire people to take control
+          of their health journey using modern web tools.
+        </p>
+      </div>
     </div>
   );
-}
+};
 
 export default About;

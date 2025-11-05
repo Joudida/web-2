@@ -1,33 +1,35 @@
 .about-container {
-    text-align: center;
-    padding: 50px 20px;
-    background: #fafafa;
-    color:#333;
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 30px;
+  text-align: center;
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
-.about-hero h1 {
-    font-size: 2.5rem;
-    color:#0d9488;
-    margin-bottom: 15px;
+
+.about-container h1 {
+  font-size: 2.2rem;
+  color: #222;
+  margin-bottom: 20px;
 }
-.about-hero p {
-    max-width:700px;
-    margin:0 auto 40px;
-    font-size: 1.1rem;
+
+.about-container p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 20px;
 }
-.about-mission ,
-.about-vision  {
-    margin-bottom: 40px;
+
+.about-team h2 {
+  margin-top: 40px;
+  color: #222;
 }
-.about-mission h2 ,
-.about-vision h2 {
-  color: #0d9488;
-  margin-bottom: 10px;
-}
-.about-vision ul {
-    list-style: none;
-    padding: o;
-}
-.about-vision li {
-    margin-bottom: 10px;
-    font-size: 1.05rem;
+
+.about-img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 20px 0;
 }
