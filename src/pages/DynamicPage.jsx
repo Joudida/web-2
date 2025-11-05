@@ -5,26 +5,28 @@ import { useParams } from "react-router-dom";
 const DynamicPage = () => {
   const { id } = useParams();
 
-  // بيانات تجريبية (مثلاً تفاصيل الأنشطة)
   const activities = [
     {
       id: 1,
       title: "Personal Training",
-      image: "/images/personal-training.jpg",
+      image:
+        "https://images.pexels.com/photos/414029/pexels-photo-414029.jpeg",
       description:
         "Achieve your fitness goals with personalized training sessions designed just for you.",
     },
     {
       id: 2,
       title: "CrossFit",
-      image: "/images/crossfit.jpg",
+      image:
+        "https://images.pexels.com/photos/1552106/pexels-photo-1552106.jpeg",
       description:
         "Join our high-intensity CrossFit classes and push your limits every day!",
     },
     {
       id: 3,
       title: "Zumba",
-      image: "/images/zumba.jpg",
+      image:
+        "https://images.pexels.com/photos/3823039/pexels-photo-3823039.jpeg",
       description:
         "Have fun while burning calories with energetic Zumba dance workouts.",
     },
