@@ -7,6 +7,7 @@ import FeatureDetail from "./pages/FeatureDeteal";
 import About from "./pages/about";
 import Contact from "./pages/contact";
 import "./App.css";
+import Trainers from "./pages/Trainers";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/features" element={<Features />} />
           <Route path="/feature/:id" element={<FeatureDetail />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/trainers"element={<Trainers/>} ></Route>
         </Routes>
       </div>
     </Router>
