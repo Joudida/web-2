@@ -1,0 +1,51 @@
+.trainer-detail{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    max-width: 700px;
+    margin: auto;
+}
+
+.trainer-image{
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.trainer-info{
+    text-align: center;
+}
+
+.trainer-info h2{
+  font-size: 28px;
+  margin-bottom: 10px;
+  color:#222;
+}
+
+.specialty{
+    color: #e67e22;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.specialty{
+    color:#e67e22;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.bio{
+    margin-top: 15px;
+    font-style: italic;
+    color: #555;
+}
+
+.not-found{
+    text-align: center ;
+    padding: 60px;
+    font-size: 22px;
+    color: red;
+}

@@ -8,6 +8,8 @@ import About from "./pages/about";
 import Contact from "./pages/contact";
 import "./App.css";
 import Trainers from "./pages/Trainers";
+import TrainerDetail from "./pages/TrainerDetail";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -23,9 +25,11 @@ function App() {
           <Route path="/features" element={<Features />} />
           <Route path="/feature/:id" element={<FeatureDetail />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/trainers"element={<Trainers/>} ></Route>
+         < Route path="/trainers" element={<Trainers />} />
+        <Route path="/trainer/:id" element={<TrainerDetail />} />
         </Routes>
       </div>
+      <Footer/>
     </Router>
   );
 }
