@@ -30,6 +30,7 @@ const Footer = () => {
         © {new Date().getFullYear()} HealthTrack. All rights reserved.
       </div>
     </footer>
+    
   );
 };
 
