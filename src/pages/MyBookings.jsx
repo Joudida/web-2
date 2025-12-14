@@ -9,13 +9,27 @@ const MyBookings = () => {
     const token = localStorage.getItem("token");
     axios
       .get("http://localhost:5000/api/trainers/mybookings", {
-        headers: { Authorization:` Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setBookings(res.data))
       .catch((err) => console.log(err));
   }, []);
 
-  if (bookings.length === 0) return <p>You have no bookings yet.</p>;
+  // دالة لإلغاء الحجز
+  const handleCancel = (bookingId) => {
+    const token = localStorage.getItem("token");
+    axios
+      .delete(`http://localhost:5000/api/trainers/cancel/${bookingId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        alert(res.data);
+        setBookings((prev) => prev.filter((b) => b.bookingId !== bookingId));
+      })
+      .catch((err) => console.log(err));
+  };
+
+  if (bookings.length === 0) return <p className="no-bookings">You have no bookings yet.</p>;
 
   return (
     <div className="bookings-container">
@@ -26,6 +40,9 @@ const MyBookings = () => {
           <p>{b.specialty}</p>
           <p>{b.gym}</p>
           <p>Booked on: {new Date(b.booking_date).toLocaleString()}</p>
+          <button className="cancel-button" onClick={() => handleCancel(b.bookingId)}>
+            Cancel Booking
+          </button>
         </div>
       ))}
     </div>
