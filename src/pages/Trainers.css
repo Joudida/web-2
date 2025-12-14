@@ -1,42 +1,49 @@
-.trainers-page{
-  text-align: centre;
-  padding: 50px 20px;
-}
-
-.trainers-title{
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.trainers-subtitle{
-  color: #555;
-  margin-bottom: 40px;
-}
-
-.trainers-grid{
+.trainers-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-  gap: 25px;
-  justify-items: centre;
-}
-
-.trainers-card{
-  background: #fff;
-  border-radius: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
   padding: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: 0.3s;
-  width: 250px;
 }
 
-.trainer-card:hover{
-  transform:translateY(-5px);
+.trainer-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.trainer-card img{
+.trainer-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.trainer-image {
   width: 100%;
-  height: 220px;
+  height: 200px;
   object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 15px;
+}
+
+.trainer-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.trainer-specialty, .trainer-experience, .trainer-gym {
+  font-size: 0.95rem;
+  margin: 5px 10px;
+  color: #555;
+}
+
+.trainer-bio {
+  font-size: 0.9rem;
+  margin: 10px;
+  color: #333;
+}
+
+@media (max-width: 640px) {
+  .trainer-card {
+    margin: 0 auto;
+  }
 }
