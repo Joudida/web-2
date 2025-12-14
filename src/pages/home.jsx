@@ -5,7 +5,7 @@ import "./Home.css";
 function Home() {
   return (
     <div className="home">
-      {/* Hero Section */}
+     
       <section className="hero">
         <div className="hero-content">
           <h1>Welcome to HealthTrack 🏋️‍♀️</h1>
@@ -16,7 +16,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Highlights Section */}
       <section className="highlights">
         <div className="highlight">
           <h3>💪 Track Workouts</h3>
@@ -32,7 +31,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Call to Action */}
       <section className="cta">
         <h2>Ready to start your journey?</h2>
         <Link to="/contact" className="btn">

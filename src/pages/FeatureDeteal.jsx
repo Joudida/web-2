@@ -43,14 +43,13 @@ const FeatureDetail = () => {
   return (
     <div className="max-w-5xl mx-auto px-6 py-12 bg-white rounded-xl shadow-lg">
       <div className="flex flex-col lg:flex-row items-center gap-8">
-        {/* Image */}
+  
         <img
           src={feature.image}
           alt={feature.title}
           className="w-full lg:w-1/2 h-64 lg:h-96 rounded-xl object-cover shadow-md"
         />
 
-        {/* Text */}
         <div className="text-center lg:text-left">
           <h1 className="text-3xl font-bold text-gray-900 mb-4">{feature.title}</h1>
           <p className="text-gray-700 text-lg">{feature.description}</p>

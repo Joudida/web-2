@@ -6,14 +6,14 @@ function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // نحط Back button على كل صفحة مش الرئيسية ("/")
+ 
   const showBackButton = location.pathname !== "/";
 
   return (
     <nav className="bg-gray-900 text-white shadow-md">
       <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-2">
 
-        {/* Top: Back button (if not home) */}
+      
         {showBackButton && (
           <button
             onClick={() => navigate(-1)}
@@ -25,12 +25,11 @@ function Navbar() {
 
         <div className="flex items-center justify-between w-full">
 
-          {/* Logo */}
+      
           <Link to="/" className="text-2xl font-bold tracking-wide">
             Health<span className="text-cyan-400">Track</span>
           </Link>
 
-          {/* Mobile Menu Button */}
           <button
             className="md:hidden text-3xl"
             onClick={() => setOpen(!open)}
@@ -39,7 +38,7 @@ function Navbar() {
             ☰
           </button>
 
-          {/* Desktop Menu */}
+       
           <ul className="hidden md:flex space-x-8 text-lg font-medium">
             <li><Link className="hover:text-cyan-400 transition" to="/">Home</Link></li>
             <li><Link className="hover:text-cyan-400 transition" to="/trainers">Trainers</Link></li>
@@ -50,7 +49,7 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Dropdown Menu */}
+   
       {open && (
         <div className="md:hidden bg-gray-800 text-white shadow-md">
           <ul className="flex flex-col space-y-3 px-6 py-4 text-lg font-medium">

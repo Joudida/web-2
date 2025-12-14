@@ -56,14 +56,13 @@ const TrainerDetail = () => {
   return (
     <div className="max-w-5xl mx-auto px-6 py-12 bg-white rounded-xl shadow-lg">
       <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8">
-        {/* Image */}
+      
         <img
           src={trainer.image}
           alt={trainer.name}
           className="w-64 h-64 rounded-xl object-cover shadow-md"
         />
 
-        {/* Info */}
         <div className="text-center lg:text-left">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">{trainer.name}</h2>
           <p className="text-gray-700 mb-2"><span className="font-semibold">Specialty:</span> {trainer.specialty}</p>
