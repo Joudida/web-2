@@ -10,6 +10,7 @@ import "./App.css";
 import Trainers from "./pages/Trainers";
 import TrainerDetail from "./pages/TrainerDetail";
 import Footer from "./components/Footer";
+import MyBookings from "./pages/MyBookings";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
          < Route path="/trainers" element={<Trainers />} />
         <Route path="/trainer/:id" element={<TrainerDetail />} />
+        <Route path="/mybookings" element={<MyBookings />} />
         </Routes>
       </div>
       <Footer/>
