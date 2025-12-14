@@ -11,6 +11,7 @@ import Trainers from "./pages/Trainers";
 import TrainerDetail from "./pages/TrainerDetail";
 import Footer from "./components/Footer";
 import MyBookings from "./pages/MyBookings";
+import AdminBookings from "./pages/AdminBookings";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
          < Route path="/trainers" element={<Trainers />} />
         <Route path="/trainer/:id" element={<TrainerDetail />} />
         <Route path="/mybookings" element={<MyBookings />} />
+        <Route path="/admin/bookings" element={<AdminBookings />} />
         </Routes>
       </div>
       <Footer/>
