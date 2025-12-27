@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar"; 
+import Navbar from "./components/Navbar";
 import Home from "./pages/home";
 import Features from "./pages/features";
 import FeatureDetail from "./pages/FeatureDeteal";
@@ -12,6 +12,7 @@ import TrainerDetail from "./pages/TrainerDetail";
 import Footer from "./components/Footer";
 import MyBookings from "./pages/MyBookings";
 import AdminBookings from "./pages/AdminBookings";
+import DynamicPage from "./pages/DynamicPage";
 
 function App() {
   return (
@@ -29,13 +30,14 @@ function App() {
           <Route path="/contact" element={<Contact />} />
          < Route path="/trainers" element={<Trainers />} />
         <Route path="/trainer/:id" element={<TrainerDetail />} />
-        <Route path="/mybookings" element={<MyBookings />} />
-        <Route path="/admin/bookings" element={<AdminBookings />} />
+        <Route path="/mybooking" element={<MyBookings />} />
+        <Route path="/admin" element={<AdminBookings />} />
+        <Route path="/dynamic" element={<DynamicPage />} />
         </Routes>
       </div>
       <Footer/>
     </Router>
-    //hhh
+    
   );
 }
 

@@ -2,51 +2,144 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./MyBookings.css";
 
-const MyBookings = () => {
+function MyBooking() {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [trainerId, setTrainerId] = useState("");
+  const [date, setDate] = useState("");
+  const [notes, setNotes] = useState("");
+
+  const [trainers, setTrainers] = useState([]);
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    axios
-      .get("http://localhost:5000/api/trainers/mybookings", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => setBookings(res.data))
-      .catch((err) => console.log(err));
+    fetchTrainers();
+    fetchBookings();
   }, []);
 
-  // دالة لإلغاء الحجز
-  const handleCancel = (bookingId) => {
-    const token = localStorage.getItem("token");
-    axios
-      .delete(`http://localhost:5000/api/trainers/cancel/${bookingId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        alert(res.data);
-        setBookings((prev) => prev.filter((b) => b.bookingId !== bookingId));
-      })
-      .catch((err) => console.log(err));
+  const fetchTrainers = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/gettrainers");
+      setTrainers(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  if (bookings.length === 0) return <p className="no-bookings">You have no bookings yet.</p>;
+  const fetchBookings = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/bookings");
+      setBookings(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const submitBooking = async () => {
+    try {
+      await axios.post("http://localhost:5000/addbooking", {
+        full_name: name,
+        phone,
+        trainer_id: trainerId,
+        booking_date: date,
+        notes,
+      });
+
+      // ✅ clear without refresh
+      setName("");
+      setPhone("");
+      setTrainerId("");
+      setDate("");
+      setNotes("");
+
+      fetchBookings();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const deleteBooking = async (id) => {
+    try {
+      await axios.delete(
+        `http://localhost:5000/deletebooking/${id}`
+      );
+      fetchBookings();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
-    <div className="bookings-container">
-      {bookings.map((b) => (
-        <div key={b.bookingId} className="booking-card">
-          <img src={b.image} alt={b.trainerName} className="booking-image" />
-          <h3>{b.trainerName}</h3>
-          <p>{b.specialty}</p>
-          <p>{b.gym}</p>
-          <p>Booked on: {new Date(b.booking_date).toLocaleString()}</p>
-          <button className="cancel-button" onClick={() => handleCancel(b.bookingId)}>
-            Cancel Booking
-          </button>
-        </div>
-      ))}
+    <div className="mybooking-container">
+      <h2>Book a Session</h2>
+
+      <form
+        className="booking-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          submitBooking();
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Full Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+
+        <input
+          type="text"
+          placeholder="Phone"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
+
+        <select
+          value={trainerId}
+          onChange={(e) => setTrainerId(e.target.value)}
+        >
+          <option value="">Select Trainer</option>
+          {trainers.map((t) => (
+            <option key={t.id} value={t.id}>
+              {t.name}
+            </option>
+          ))}
+        </select>
+
+        <input
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+        />
+
+        <textarea
+          placeholder="Extra notes"
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
+        />
+
+        <button type="submit">Book Session</button>
+      </form>
+
+      <h2>My Bookings</h2>
+
+      <div className="booking-cards">
+        {bookings.map((b) => (
+          <div className="booking-card" key={b.id}>
+            <h3>{b.full_name}</h3>
+            <p>📞 {b.phone}</p>
+            <p>🏋️ {b.trainer_name}</p>
+            <p>📅 {b.booking_date}</p>
+            {b.notes && <p>📝 {b.notes}</p>
+            }
+            <button onClick={() => deleteBooking(b.id)}>
+              Delete
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
-};
+}
 
-export default MyBookings;
+export default MyBooking;

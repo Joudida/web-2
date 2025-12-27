@@ -1,21 +1,35 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import { features } from "./features";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./DynamicPage.css";
+import { Link } from "react-router-dom";
 
 const DynamicPage = () => {
-  const { id } = useParams();
-  const feature = features.find((f) => f.id === parseInt(id));
+  const [trainers, setTrainers] = useState([]);
 
-  if (!feature) {
-    return <h2>Activity not found</h2>;
-  }
+  useEffect(() => {
+    const fetchTrainers = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/gettrainers");
+        setTrainers(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchTrainers();
+  }, []);
 
   return (
-    <div className="dynamic-page">
-      <img src={feature.image} alt={feature.title} className="dynamic-image" />
-      <h1>{feature.title}</h1>
-      <p>{feature.description}</p>
+    <div className="trainers-container">
+      {trainers.map((t) => (
+        <div key={t.id} className="trainer-card">
+          <img src={t.image} alt={t.name} />
+          <h3>{t.name}</h3>
+          <p>{t.specialty}</p>
+          <p>{t.gym}</p>
+          <Link to={`/trainer/${t.id}`}>View Details</Link>
+        </div>
+      ))}
     </div>
   );
 };

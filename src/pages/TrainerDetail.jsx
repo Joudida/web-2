@@ -1,58 +1,48 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
-import "./TrainerDetails.css";
+import { useParams } from "react-router-dom";
 
 const TrainerDetails = () => {
   const { id } = useParams();
   const [trainer, setTrainer] = useState(null);
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/api/trainers/${id}`)
-      .then((res) => setTrainer(res.data))
-      .catch((err) => console.log(err));
-  }, [id]);
-
-  // دالة الحجز
-  const handleBooking = () => {
-    const token = localStorage.getItem("token"); // JWT بعد login
-    axios
-      .post(
-        `http://localhost:5000/api/trainers/book/${trainer.id}`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
-      .then((res) => alert(res.data))
-      .catch((err) => console.log(err));
+  const handleBooking = async () => {
+    try {
+      await axios.post("http://localhost:5000/addbooking", {
+        user_id: 1,
+        trainer_id: trainer.id,
+      });
+      alert("Booking successful");
+    } catch (err) {
+      console.log(err);
+      alert("Booking failed");
+    }
   };
+
+  useEffect(() => {
+    const fetchTrainer = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:5000/gettrainer/${id}`
+        );
+        setTrainer(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchTrainer();
+  }, [id]);
 
   if (!trainer) return <p>Loading...</p>;
 
   return (
-    <div className="trainer-details-container">
-      <img
-        src={trainer.image}
-        alt={trainer.name}
-        className="trainer-details-image"
-      />
+    <div>
+      <img src={trainer.image} alt={trainer.name} />
       <h2>{trainer.name}</h2>
-      <p>
-        <strong>Specialty:</strong> {trainer.specialty}
-      </p>
-      <p>
-        <strong>Experience:</strong> {trainer.experience} years
-      </p>
-      <p>
-        <strong>Gym:</strong> {trainer.gym}
-      </p>
+      <p>{trainer.specialty}</p>
       <p>{trainer.bio}</p>
-
-      <button className="book-button" onClick={handleBooking}>
-        Book Session
-      </button>
+      <button onClick={handleBooking}>Book Session</button>
     </div>
   );
 };

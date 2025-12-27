@@ -1,26 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import './Trainers.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./Trainers.css";
 
 const Trainers = () => {
   const [trainers, setTrainers] = useState([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/trainers')
-      .then(res => setTrainers(res.data))
-      .catch(err => console.log(err));
+    const fetchTrainers = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/gettrainers");
+        setTrainers(res.data);
+      } catch (err) {
+        console.log(err);
+        setError("Failed to load trainers");
+      }
+    };
+
+    fetchTrainers();
   }, []);
 
   return (
     <div className="trainers-container">
-      {trainers.map(trainer => (
-        <div key={trainer.id} className="trainer-card">
-          <img src={trainer.image} alt={trainer.name} className="trainer-image" />
-          <h3 className="trainer-name">{trainer.name}</h3>
-          <p className="trainer-specialty">{trainer.specialty}</p>
-          <p className="trainer-experience">Experience: {trainer.experience} years</p>
-          <p className="trainer-gym">{trainer.gym}</p>
-          <p className="trainer-bio">{trainer.bio}</p>
+      {error && <p>{error}</p>}
+
+      {trainers.map((t) => (
+        <div key={t.id} className="trainer-card">
+          <img src={t.image} alt={t.name} />
+          <h3>{t.name}</h3>
+          <p>{t.specialty}</p>
+          <p>{t.gym}</p>
         </div>
       ))}
     </div>

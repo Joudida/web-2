@@ -1,52 +1,74 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./AdminBookings.css";
+import "./AdminBooking.css";
 
-const AdminBookings = () => {
+function AdminBooking() {
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    axios
-      .get("http://localhost:5000/api/trainers/admin/bookings", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => setBookings(res.data))
-      .catch((err) => console.log(err));
+    fetchBookings();
   }, []);
 
-  const handleDelete = (bookingId) => {
-    const token = localStorage.getItem("token");
-    axios
-      .delete(`http://localhost:5000/api/trainers/admin/bookings/${bookingId}`, {
-        headers: { Authorization:` Bearer ${token}` },
-      })
-      .then((res) => {
-        alert(res.data);
-        setBookings((prev) => prev.filter((b) => b.bookingId !== bookingId));
-      })
-      .catch((err) => console.log(err));
+  const fetchBookings = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/bookings");
+      setBookings(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  if(bookings.length === 0) return <p>No bookings found.</p>;
+  const deleteBooking = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this booking?")) return;
+
+    try {
+      await axios.delete(
+        `http://localhost:5000/deletebooking/${id}`
+      );
+      fetchBookings();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
-    <div className="admin-bookings-container">
-      {bookings.map((b) => (
-        <div key={b.bookingId} className="admin-booking-card">
-          <img src={b.image} alt={b.trainerName} className="admin-booking-image" />
-          <h3>{b.trainerName}</h3>
-          <p>Specialty: {b.specialty}</p>
-          <p>Gym: {b.gym}</p>
-          <p>User: {b.userName}</p>
-          <p>Booked on: {new Date(b.booking_date).toLocaleString()}</p>
-          <button className="delete-button" onClick={() => handleDelete(b.bookingId)}>
-            Delete Booking
-          </button>
-        </div>
-      ))}
+    <div className="admin-container">
+      <h2>Admin – All Bookings</h2>
+
+      <table className="admin-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Trainer</th>
+            <th>Date</th>
+            <th>Notes</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {bookings.map((b) => (
+            <tr key={b.id}>
+              <td>{b.full_name}</td>
+              <td>{b.phone}</td>
+              <td>{b.trainer_name}</td>
+              <td>{b.booking_date}</td>
+              <td>{b.notes || "-"}</td>
+              <td>
+                <button
+                  className="delete-btn"
+                  onClick={() => deleteBooking(b.id)}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
-};
+}
 
-export default AdminBookings;
+export default AdminBooking;
